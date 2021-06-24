@@ -3,16 +3,16 @@ import { PersonService } from './person.service';
 
 @Controller()
 export class PersonController {
-  constructor(private readonly personService: PersonService) {}
+    constructor(private readonly personService: PersonService) {}
 
-  @Get()
-  getHello(): string {
-    return this.personService.getHello();
-  }
+    @Get()
+    getHello(): string {
+        return this.personService.getHello();
+    }
 
-  @Get(':id')
-  findOne(@Param() params: { id: string }): string {
-    console.log(params.id);
-    return `This action returns a #${params.id} person`;
-  }
+    @Get(':id')
+    findOne(@Param() params: { id: string }): string {
+        console.log(params.id);
+        return `This action returns a #${params.id} person`;
+    }
 }

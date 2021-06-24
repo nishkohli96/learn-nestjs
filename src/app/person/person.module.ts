@@ -3,8 +3,8 @@ import { PersonController } from './person.controller';
 import { PersonService } from './person.service';
 
 @Module({
-  imports: [],
-  controllers: [PersonController],
-  providers: [PersonService],
+    imports: [],
+    controllers: [PersonController],
+    providers: [PersonService],
 })
 export class PersonModule {}
