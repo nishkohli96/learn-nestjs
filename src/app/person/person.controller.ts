@@ -32,6 +32,6 @@ export class PersonController {
     @Get('person/:id')
     typeCheck(@Param('id', new CheckIntPipe()) id: number) {
         // or typeCheck(@Param('id', ParseIntPipe) id: number) {
-        return `${id} is a valid param for this route`;
+        return `Param Id: ${id}. env var is ${process.env.DUMMY_KEY}`;
     }
 }

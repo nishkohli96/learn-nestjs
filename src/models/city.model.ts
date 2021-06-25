@@ -1,14 +1,13 @@
-import { getModelForClass, prop } from "@typegoose/typegoose";
-import { Types } from "mongoose";
+import { getModelForClass, prop } from '@typegoose/typegoose';
+import { Types } from 'mongoose';
 
 export enum COUNTRY {
-    INDIA = "INDIA",
-    USA = "USA",
-    CANDA = "CANADA"
+    INDIA = 'INDIA',
+    USA = 'USA',
+    CANDA = 'CANADA',
 }
 
 export class CitySchema {
-    
     _id: Types.ObjectId;
 
     @prop({
@@ -19,15 +18,15 @@ export class CitySchema {
 
     @prop({
         required: true,
-        enum: COUNTRY
+        enum: COUNTRY,
     })
     country: COUNTRY;
 }
 
 export const CityModel = getModelForClass(CitySchema, {
     schemaOptions: {
-        collection: "City",
+        collection: 'City',
         timestamps: true,
         minimize: true,
-    }
-})
+    },
+});
