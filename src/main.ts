@@ -19,17 +19,20 @@ async function bootstrap() {
     );
 
     /* 
-        For a global middleware throughout the app 
-        - app.use(MiddlewareName);
+        - For a global middleware throughout the app 
+            app.use(MiddlewareName);
 
-        For a global pipe
-        - app.useGlobalPipes(new ValidationPipe());
+        - For a global pipe
+            app.useGlobalPipes(new ValidationPipe());
 
-        For global guards
-        - app.useGlobalGuards(new RolesGuard());
+        - For global guards
+            app.useGlobalGuards(new RolesGuard());
 
-        For a global prefix
-        - app.setGlobalPrefix('/api);
+        - For a global prefix
+            app.setGlobalPrefix('/api);
+
+        - For a global interceptor
+            app.useGlobalInterceptors(new LoggingInterceptor());
     */
     await app.listen(3000);
 }
