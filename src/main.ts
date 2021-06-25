@@ -9,10 +9,10 @@ async function bootstrap() {
     const app = await NestFactory.create<NestFastifyApplication>(
         AppModule,
         new FastifyAdapter({
-            // logger: {
-            //   level: 'info',
-            //   prettyPrint: true, // requires pino-pretty pkg
-            // },
+            logger: {
+                level: 'info',
+                prettyPrint: true, // requires pino-pretty pkg
+            },
             ignoreTrailingSlash: true,
             caseSensitive: false,
         }),
@@ -20,7 +20,16 @@ async function bootstrap() {
 
     /* 
         For a global middleware throughout the app 
-        app.use(MiddlewareName);
+        - app.use(MiddlewareName);
+
+        For a global pipe
+        - app.useGlobalPipes(new ValidationPipe());
+
+        For global guards
+        - app.useGlobalGuards(new RolesGuard());
+
+        For a global prefix
+        - app.setGlobalPrefix('/api);
     */
     await app.listen(3000);
 }
