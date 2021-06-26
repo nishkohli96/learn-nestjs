@@ -32,6 +32,7 @@ export class PersonController {
     @Get('person/:id')
     typeCheck(@Param('id', new CheckIntPipe()) id: number) {
         // or typeCheck(@Param('id', ParseIntPipe) id: number) {
-        return `Param Id: ${id}. env var is ${process.env.DUMMY_KEY}`;
+        return `Param Id: ${id}. env var is ${process.env.DUMMY_KEY}.
+        Some str obtained from .env is ${process.env.DUMMY_STR}`;
     }
 }

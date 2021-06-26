@@ -1,9 +1,20 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { PersonModule } from './app/person/person.module';
 import { LoggerMiddleware } from './utils/logger.middleware';
 
 @Module({
-    imports: [PersonModule],
+    imports: [
+        PersonModule,
+        ConfigModule.forRoot({
+            cache: true,
+            /* Can use this for  .env files, instead of env-cmd across diff instances,
+              no need to write 2 scripts like that in cmd 'start-prod  in pkg.json */
+            envFilePath: process.env.NODE_ENV === 'dev' ? '.env' : '.env.prod',
+            /* Disable env file loading */
+            // ignoreEnvFile: true,
+        }),
+    ],
     controllers: [],
     providers: [],
 })
@@ -30,3 +41,5 @@ export class AppModule implements NestModule {
     */
     }
 }
+
+/* For more config - https://docs.nestjs.com/techniques/configuration */
