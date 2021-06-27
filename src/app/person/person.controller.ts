@@ -1,6 +1,7 @@
 import {
     Controller,
     Get,
+    Post,
     Param,
     ParseIntPipe,
     UseGuards,
@@ -11,7 +12,7 @@ import { CheckIntPipe } from '../../utils/pipetransform';
 import { AuthGuard } from '../../utils/auth.guard';
 import { LoggingInterceptor } from '../../utils/login.interceptor';
 
-@Controller()
+@Controller("person")
 @UseGuards(AuthGuard)
 @UseInterceptors(LoggingInterceptor)
 export class PersonController {

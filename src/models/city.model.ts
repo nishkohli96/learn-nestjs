@@ -4,7 +4,7 @@ import { Types } from 'mongoose';
 export enum COUNTRY {
     INDIA = 'INDIA',
     USA = 'USA',
-    CANDA = 'CANADA',
+    CANADA = 'CANADA',
 }
 
 export class CitySchema {

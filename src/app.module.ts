@@ -1,11 +1,13 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { PersonModule } from './app/person/person.module';
+import { CityModule } from './app/city/city.module';
 import { LoggerMiddleware } from './utils/logger.middleware';
 
 @Module({
     imports: [
         PersonModule,
+        CityModule,
         ConfigModule.forRoot({
             cache: true,
             /* Can use this for  .env files, instead of env-cmd across diff instances,
