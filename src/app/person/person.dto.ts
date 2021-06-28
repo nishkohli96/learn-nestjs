@@ -1,12 +1,10 @@
-import { IsString } from 'class-validator';
-import { CheckIntPipe } from '../../utils/pipetransform';
-
-// export class CheckReqDTO {
-//     ParseIntPipe()
-//     id: string;
-// }
+import { IsNumber, IsString, Min } from 'class-validator';
 
 export class AddPersonDTO {
     @IsString()
     fullName: string;
+
+    @IsNumber()
+    @Min(1)
+    age: number;
 }

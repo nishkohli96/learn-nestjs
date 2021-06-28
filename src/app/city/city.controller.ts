@@ -1,24 +1,24 @@
-import {
-    Controller,
-    Get,
-    Post,
-    Param,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { CityService } from './city.service';
-import { AddCityDTO } from './city.dto';
-import { CitySchema} from '../../models/city.model';
+import { AddCityDTO, GetCityDTO } from './city.dto';
+import { CitySchema } from '../../models/city.model';
 
-@Controller("city")
+@Controller('city')
 export class CityController {
-    constructor(private readonly cityService: CityService) { }
+    constructor(private readonly cityService: CityService) {}
 
     @Get()
     getCities(): Promise<CitySchema[]> {
         return this.cityService.getCities();
     }
 
+    @Get(":/id")
+    getCity(@Param() param: GetCityDTO): Promise<CitySchema> {
+        return this.cityService.getCity(param);
+    }
+
     @Post()
-    addCity(body: AddCityDTO): Promise<CitySchema> {
+    addCity(@Body() body: AddCityDTO): Promise<CitySchema> {
         return this.cityService.addCity(body);
     }
 }

@@ -2,6 +2,7 @@ import {
     Controller,
     Get,
     Post,
+    Body,
     Param,
     ParseIntPipe,
     UseGuards,
@@ -11,7 +12,8 @@ import { PersonService } from './person.service';
 import { CheckIntPipe } from '../../utils/pipetransform';
 import { AuthGuard } from '../../utils/auth.guard';
 import { LoggingInterceptor } from '../../utils/login.interceptor';
-
+import { PersonSchema } from '../../models/person.model';
+import { AddPersonDTO } from "./person.dto";
 @Controller("person")
 @UseGuards(AuthGuard)
 @UseInterceptors(LoggingInterceptor)
@@ -19,8 +21,13 @@ export class PersonController {
     constructor(private readonly personService: PersonService) {}
 
     @Get()
-    getHello(): string {
-        return this.personService.getHello();
+    getCities(): Promise<PersonSchema[]> {
+        return this.personService.getPersons();
+    }
+
+    @Post()
+    addCity(@Body() body: AddPersonDTO): Promise<PersonSchema> {
+        return this.personService.addPerson(body);
     }
 
     @Get(':id')

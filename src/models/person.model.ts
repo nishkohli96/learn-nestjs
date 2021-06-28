@@ -13,7 +13,7 @@ export class PersonSchema {
 
     @prop({
         required: true,
-        minlength: 1,
+        min: 1,
     })
     age: number;
 
