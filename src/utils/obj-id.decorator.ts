@@ -1,8 +1,22 @@
-import { createParamDecorator } from '@nestjs/common';
-import mongoose from 'mongoose';
+import { Types } from 'mongoose';
+import { registerDecorator, ValidationOptions } from 'class-validator';
 
-export const IsObjectId = createParamDecorator((str: string):boolean => {
-    // const ObjectId = mongoose.Types.ObjectId;
-    // return ObjectId.isValid(new ObjectId(data));
-    return mongoose.isValidObjectId(str)
-});
+const opt: ValidationOptions = {
+    message: "$property is not a valid id",
+}
+
+export function IsObjectId(options = opt) {
+    return function (class$: object, propertyName: string) {
+        registerDecorator({
+            name: "isObjectId",
+            target: class$.constructor,
+            propertyName,
+            options,
+            validator: {
+                validate(value: string) {
+                    return Types.ObjectId.isValid(value);
+                },
+            }
+        })
+    }
+}

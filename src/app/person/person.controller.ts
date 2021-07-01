@@ -21,12 +21,12 @@ export class PersonController {
     constructor(private readonly personService: PersonService) {}
 
     @Get()
-    getCities(): Promise<PersonSchema[]> {
+    getPersons(): Promise<PersonSchema[]> {
         return this.personService.getPersons();
     }
 
     @Post()
-    addCity(@Body() body: AddPersonDTO): Promise<PersonSchema> {
+    addPerson(@Body() body: AddPersonDTO): Promise<PersonSchema> {
         return this.personService.addPerson(body);
     }
 

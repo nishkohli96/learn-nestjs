@@ -12,7 +12,7 @@ export class CityController {
         return this.cityService.getCities();
     }
 
-    @Get(":/id")
+    @Get("/:id")
     getCity(@Param() param: GetCityDTO): Promise<CitySchema> {
         return this.cityService.getCity(param);
     }

@@ -1,4 +1,4 @@
-import { IsNumber, IsString, Min } from 'class-validator';
+import { IsMongoId, IsNumber, IsString, Min } from 'class-validator';
 
 export class AddPersonDTO {
     @IsString()
@@ -7,4 +7,7 @@ export class AddPersonDTO {
     @IsNumber()
     @Min(1)
     age: number;
+
+    @IsMongoId()
+    city: string;
 }
