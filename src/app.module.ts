@@ -1,8 +1,8 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { PersonModule } from './app/person/person.module';
 import { CityModule } from './app/city/city.module';
-import { LoggerMiddleware } from './utils/logger.middleware';
+// import { LoggerMiddleware } from './utils/logger.middleware';
 
 @Module({
     imports: [
@@ -21,9 +21,10 @@ import { LoggerMiddleware } from './utils/logger.middleware';
     providers: [],
 })
 export class AppModule implements NestModule {
-    configure(consumer: MiddlewareConsumer) {
+    configure() {
+        // configure(consumer: MiddlewareConsumer) {
         /* Separate multiple middlewares by , */
-        consumer.apply(LoggerMiddleware).forRoutes('cats');
+        // consumer.apply(LoggerMiddleware).forRoutes('cats');
         /* 
       forRoutes can take the following args wrt a scenario - 
       

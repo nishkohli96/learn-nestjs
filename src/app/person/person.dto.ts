@@ -1,4 +1,6 @@
-import { IsMongoId, IsNumber, IsString, Min } from 'class-validator';
+import { IsNumber, IsString, Min } from 'class-validator';
+import Types from 'mongoose';
+import { IsObjectId } from '../../utils/obj-id.decorator';
 
 export class AddPersonDTO {
     @IsString()
@@ -8,6 +10,6 @@ export class AddPersonDTO {
     @Min(1)
     age: number;
 
-    @IsMongoId()
-    city: string;
+    @IsObjectId()
+    city: Types.ObjectId;
 }

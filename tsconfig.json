@@ -1,15 +1,31 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "declaration": true,
+    "declaration": true,  /* for .d.td file */
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2017",
-    "sourceMap": true,
+    "target": "es2021",
+    "sourceMap": false, /* dont generate .map file in build */
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
-  }
+    "incremental": true,
+    "composite": true /* Enable project compilation */,
+    "strict": true,
+    "noImplicitAny": true /* Raise err with an any type */,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true, /* strict checking of function types */
+    "noImplicitThis": true, /* useStrict for each file */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "strictPropertyInitialization": false
+  },
+  "exclude": [
+    "node_modules",
+    "./**/*.spec.ts",
+    "build"
+  ]
 }

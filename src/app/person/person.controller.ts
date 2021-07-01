@@ -4,19 +4,19 @@ import {
     Post,
     Body,
     Param,
-    ParseIntPipe,
+    // ParseIntPipe,
     UseGuards,
-    UseInterceptors,
+    // UseInterceptors,
 } from '@nestjs/common';
 import { PersonService } from './person.service';
 import { CheckIntPipe } from '../../utils/pipetransform';
 import { AuthGuard } from '../../utils/auth.guard';
-import { LoggingInterceptor } from '../../utils/login.interceptor';
+// import { LoggingInterceptor } from '../../utils/login.interceptor';
 import { PersonSchema } from '../../models/person.model';
-import { AddPersonDTO } from "./person.dto";
-@Controller("person")
+import { AddPersonDTO } from './person.dto';
+@Controller('person')
 @UseGuards(AuthGuard)
-@UseInterceptors(LoggingInterceptor)
+// @UseInterceptors(LoggingInterceptor)
 export class PersonController {
     constructor(private readonly personService: PersonService) {}
 

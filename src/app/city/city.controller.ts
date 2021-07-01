@@ -12,8 +12,8 @@ export class CityController {
         return this.cityService.getCities();
     }
 
-    @Get("/:id")
-    getCity(@Param() param: GetCityDTO): Promise<CitySchema> {
+    @Get('/:id')
+    getCity(@Param() param: GetCityDTO): Promise<CitySchema | null> {
         return this.cityService.getCity(param);
     }
 

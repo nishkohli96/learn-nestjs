@@ -1,7 +1,7 @@
-import { Types } from 'mongoose';
+// import { Types } from 'mongoose';
 import { IsEnum, IsMongoId, IsString, MinLength } from 'class-validator';
 import { COUNTRY } from '../../models/city.model';
-import { IsObjectId } from '../../utils/obj-id.decorator';
+// import { IsObjectId } from '../../utils/obj-id.decorator';
 
 export class AddCityDTO {
     @IsString()

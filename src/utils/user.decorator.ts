@@ -1,3 +1,4 @@
+/*
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 
 export const User = createParamDecorator(
@@ -6,6 +7,7 @@ export const User = createParamDecorator(
         return request.user;
     },
 );
+*/
 
 /* Use it like this-
 

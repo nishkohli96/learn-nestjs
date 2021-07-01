@@ -1,3 +1,4 @@
+/*
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 
@@ -8,6 +9,7 @@ export class LoggerMiddleware implements NestMiddleware {
         next();
     }
 }
+*/
 
 /* 
     Or can write it as a function, without the @Injectable Part 
