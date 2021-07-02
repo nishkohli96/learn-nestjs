@@ -4,9 +4,8 @@ import { AddPersonDTO } from './person.dto';
 
 @Injectable()
 export class PersonService {
+    constructor() {}
 
-    constructor() { }
-    
     async getPersons(): Promise<PersonSchema[]> {
         const res = await PersonModel.find({});
         return res;

@@ -20,7 +20,7 @@ export class CitySchema {
     @prop({
         required: true,
         enum: COUNTRY,
-        default: COUNTRY.INDIA
+        default: COUNTRY.INDIA,
     })
     country: COUNTRY;
 }
@@ -30,6 +30,6 @@ export const CityModel = getModelForClass(CitySchema, {
         collection: 'City',
         timestamps: true,
         minimize: true,
-        versionKey: false
+        versionKey: false,
     },
 });

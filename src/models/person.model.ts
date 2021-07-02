@@ -29,6 +29,6 @@ export const PersonModel = getModelForClass(PersonSchema, {
         collection: 'Person',
         timestamps: true,
         minimize: true,
-        versionKey: false
+        versionKey: false,
     },
 });
