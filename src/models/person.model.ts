@@ -8,6 +8,7 @@ export class PersonSchema {
     @prop({
         required: true,
         minlength: 3,
+        trim: true,
     })
     fullName: string;
 
@@ -28,5 +29,6 @@ export const PersonModel = getModelForClass(PersonSchema, {
         collection: 'Person',
         timestamps: true,
         minimize: true,
+        versionKey: false
     },
 });

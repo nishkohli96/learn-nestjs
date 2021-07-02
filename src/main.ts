@@ -31,7 +31,7 @@ async function bootstrap() {
             useFindAndModify: false,
             useCreateIndex: true,
         });
-        console.log('Connected to MongoDB...');
+        console.log('[MONGODB]::Connected');
     } catch (e) {
         console.log('db conn err: ', e);
         process.exit(1);

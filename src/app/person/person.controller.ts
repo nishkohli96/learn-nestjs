@@ -14,6 +14,7 @@ import { AuthGuard } from '../../utils/auth.guard';
 // import { LoggingInterceptor } from '../../utils/login.interceptor';
 import { PersonSchema } from '../../models/person.model';
 import { AddPersonDTO } from './person.dto';
+
 @Controller('person')
 @UseGuards(AuthGuard)
 // @UseInterceptors(LoggingInterceptor)
