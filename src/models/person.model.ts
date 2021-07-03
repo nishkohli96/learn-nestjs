@@ -1,4 +1,4 @@
-import { getModelForClass, prop, Ref } from '@typegoose/typegoose';
+import { getModelForClass, prop, Ref} from '@typegoose/typegoose';
 import { Types } from 'mongoose';
 import { CitySchema } from './city.model';
 
@@ -20,8 +20,18 @@ export class PersonSchema {
 
     @prop({
         required: true,
+        type: Types.ObjectId,
     })
     city: Ref<CitySchema>;
+
+    @prop({
+        required: true,
+        unique: true,
+    })
+    email: string;
+
+    @prop({ required: true })
+    password: string;
 }
 
 export const PersonModel = getModelForClass(PersonSchema, {
