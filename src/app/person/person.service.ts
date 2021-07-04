@@ -6,13 +6,13 @@ import { AddPersonDTO } from './person.dto';
 export class PersonService {
     constructor() {}
 
-    async getPersons(): Promise<PersonSchema[]> {
-        const res = await PersonModel.find({});
+    async getPersons(): Promise<PersonModel[]> {
+        const res = await PersonSchema.find({});
         return res;
     }
 
-    async addPerson(body: AddPersonDTO): Promise<PersonSchema> {
-        const res = PersonModel.create(body);
+    async addPerson(body: AddPersonDTO): Promise<PersonModel> {
+        const res = PersonSchema.create(body);
         return res;
     }
 }

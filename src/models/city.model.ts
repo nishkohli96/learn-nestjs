@@ -7,7 +7,7 @@ export enum COUNTRY {
     CANADA = 'CANADA',
 }
 
-export class CitySchema {
+export class CityModel {
     _id: Types.ObjectId;
 
     @prop({
@@ -25,7 +25,7 @@ export class CitySchema {
     country: COUNTRY;
 }
 
-export const CityModel = getModelForClass(CitySchema, {
+export const CitySchema = getModelForClass(CityModel, {
     schemaOptions: {
         collection: 'City',
         timestamps: true,

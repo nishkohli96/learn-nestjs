@@ -1,8 +1,8 @@
 import { getModelForClass, prop, Ref} from '@typegoose/typegoose';
 import { Types } from 'mongoose';
-import { CitySchema } from './city.model';
+import { CityModel } from './city.model';
 
-export class PersonSchema {
+export class PersonModel {
     _id: Types.ObjectId;
 
     @prop({
@@ -22,7 +22,7 @@ export class PersonSchema {
         required: true,
         type: Types.ObjectId,
     })
-    city: Ref<CitySchema>;
+    city: Ref<CityModel>;
 
     @prop({
         required: true,
@@ -34,7 +34,7 @@ export class PersonSchema {
     password: string;
 }
 
-export const PersonModel = getModelForClass(PersonSchema, {
+export const PersonSchema = getModelForClass(PersonModel, {
     schemaOptions: {
         collection: 'Person',
         timestamps: true,

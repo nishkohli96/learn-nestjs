@@ -12,7 +12,7 @@ import { PersonService } from './person.service';
 import { CheckIntPipe } from '../../utils/pipetransform';
 import { AuthGuard } from '../../utils/auth.guard';
 // import { LoggingInterceptor } from '../../utils/login.interceptor';
-import { PersonSchema } from '../../models/person.model';
+import { PersonModel } from '../../models/person.model';
 import { AddPersonDTO } from './person.dto';
 
 @Controller('person')
@@ -22,12 +22,12 @@ export class PersonController {
     constructor(private readonly personService: PersonService) {}
 
     @Get()
-    getPersons(): Promise<PersonSchema[]> {
+    getPersons(): Promise<PersonModel[]> {
         return this.personService.getPersons();
     }
 
     @Post()
-    addPerson(@Body() body: AddPersonDTO): Promise<PersonSchema> {
+    addPerson(@Body() body: AddPersonDTO): Promise<PersonModel> {
         return this.personService.addPerson(body);
     }
 
