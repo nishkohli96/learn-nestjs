@@ -1,14 +1,11 @@
-import { Injectable , Inject} from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { CityModel } from '../../models/city.model';
 import { AddCityDTO, GetCityDTO } from './city.dto';
 import { CityDAL } from './city.dal';
 
 @Injectable()
 export class CityService {
-    constructor(
-        @Inject("CityDAL") private cityDAL: CityDAL ,
-    )
-    { }
+    constructor(@Inject('CityDAL') private cityDAL: CityDAL) {}
 
     async getCities(): Promise<CityModel[]> {
         const res = await this.cityDAL.findAll({});
@@ -21,7 +18,7 @@ export class CityService {
     }
 
     async addCity(body: AddCityDTO): Promise<CityModel> {
-        const res =  this.cityDAL.create(body);
+        const res = this.cityDAL.create(body);
         return res;
     }
 }

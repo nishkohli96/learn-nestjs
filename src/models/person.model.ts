@@ -1,4 +1,4 @@
-import { getModelForClass, prop, Ref} from '@typegoose/typegoose';
+import { getModelForClass, prop, Ref } from '@typegoose/typegoose';
 import { Types } from 'mongoose';
 import { CityModel } from './city.model';
 

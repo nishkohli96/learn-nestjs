@@ -14,7 +14,7 @@ async function bootstrap() {
         new FastifyAdapter({
             logger: {
                 level: 'info',
-                prettyPrint: { colorize: true, levelFirst: true, }, // requires pino-pretty pkg
+                prettyPrint: { colorize: true, levelFirst: true }, // requires pino-pretty pkg
             },
             ignoreTrailingSlash: true,
             caseSensitive: false,
@@ -22,16 +22,18 @@ async function bootstrap() {
             disableRequestLogging: true,
         }),
         {
-            logger: false /* Disable NestJS Logger */
+            logger: false /* Disable NestJS Logger */,
         },
     );
 
     app.register(compression, { encodings: ['gzip', 'deflate'] });
-    app.useGlobalPipes(new ValidationPipe({
-        whitelist: true,
-        transform: false,
-        forbidNonWhitelisted: true,
-    }));
+    app.useGlobalPipes(
+        new ValidationPipe({
+            whitelist: true,
+            transform: false,
+            forbidNonWhitelisted: true,
+        }),
+    );
 
     try {
         await mongoose.connect(process.env.MONGO_URL ?? '', {
@@ -64,6 +66,6 @@ async function bootstrap() {
     await app.listen(3000);
 }
 
-bootstrap().catch(err => {
-    throw err
+bootstrap().catch((err) => {
+    throw err;
 });

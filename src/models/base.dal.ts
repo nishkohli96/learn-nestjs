@@ -1,10 +1,10 @@
-import { DocumentType, ModelType } from "@typegoose/typegoose/lib/types";
+import { DocumentType, ModelType } from '@typegoose/typegoose/lib/types';
 import {
     UpdateQuery,
     FilterQuery,
     PopulateOptions,
     DocumentDefinition,
-} from "mongoose";
+} from 'mongoose';
 
 export type WhereFilter<T> = FilterQuery<DocumentType<T>>;
 export type MongoSelectionSet = Record<string, boolean>;
@@ -21,7 +21,7 @@ export interface DALOptions {
 }
 
 const opt: DALOptions = {
-    select: "-__v",
+    select: '-__v',
     sort: undefined,
     upsert: false,
     skip: 0,
@@ -34,18 +34,18 @@ export abstract class BaseDAL<SchemaType> {
     constructor(protected readonly Model: ModelType<SchemaType>) {}
 
     async create(
-        data: DocumentDefinition<Omit<SchemaType, "_id">>
+        data: DocumentDefinition<Omit<SchemaType, '_id'>>,
     ): Promise<SchemaType> {
         const doc = await this.Model.create(data);
 
-        Reflect.deleteProperty(doc, "__v");
+        Reflect.deleteProperty(doc, '__v');
 
         return doc;
     }
 
     findOne(
         where: WhereFilter<SchemaType>,
-        options: DALOptions = {}
+        options: DALOptions = {},
     ): Promise<SchemaType> {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const { select, populate } = {
@@ -62,7 +62,7 @@ export abstract class BaseDAL<SchemaType> {
 
     findAll(
         where: WhereFilter<SchemaType>,
-        options: DALOptions = {}
+        options: DALOptions = {},
     ): Promise<SchemaType[]> {
         const { select, sort, limit, skip } = {
             ...opt,
@@ -81,7 +81,7 @@ export abstract class BaseDAL<SchemaType> {
     updateOne(
         where: WhereFilter<SchemaType>,
         data: UpdateQuery<DocumentType<SchemaType>>,
-        options: DALOptions = {}
+        options: DALOptions = {},
     ): Promise<SchemaType> {
         const { select, upsert, arrayFilters } = {
             ...opt,
@@ -100,7 +100,7 @@ export abstract class BaseDAL<SchemaType> {
 
     deleteOne(
         where: WhereFilter<SchemaType>,
-        options: DALOptions = {}
+        options: DALOptions = {},
     ): Promise<SchemaType> {
         const { select } = {
             ...opt,

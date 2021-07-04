@@ -6,10 +6,11 @@ import { CityDAL } from './city.dal';
 @Module({
     imports: [],
     controllers: [CityController],
-    providers: [CityService,
+    providers: [
+        CityService,
         {
             useClass: CityDAL,
-            provide: CityDAL.name
+            provide: CityDAL.name,
         },
     ],
 })
