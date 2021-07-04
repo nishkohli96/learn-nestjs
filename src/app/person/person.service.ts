@@ -1,8 +1,8 @@
 import { Injectable, Inject, ConflictException } from '@nestjs/common';
 import { PersonModel } from '../../models/person.model';
 import { PersonDAL } from './person.dal';
-import { AddPersonDTO, LoginDTO } from './person.dto';
-import { hashPswd, verifyPswd } from '../../utils/password';
+import { AddPersonDTO, LoginDTO, BaseResponse } from './person.dto';
+import { hashPswd, verifyPswd, getJWT } from '../../utils/password';
 
 @Injectable()
 export class PersonService {
@@ -23,7 +23,7 @@ export class PersonService {
         return res;
     }
 
-    async loginPerson(body: LoginDTO): Promise<PersonModel> {
+    async loginPerson(body: LoginDTO): Promise<BaseResponse<string>> {
         const person = await this.personDAL.findOne({ email: body.email });
 
         if (!person) {
@@ -34,6 +34,8 @@ export class PersonService {
         if (!isPswdMatch) {
             throw new ConflictException('Wrong Password');
         }
-        return person;
+        
+        const token = await getJWT(body.email);
+        return { token };
     }
 }

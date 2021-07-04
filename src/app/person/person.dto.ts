@@ -20,3 +20,7 @@ export class AddPersonDTO extends LoginDTO {
     @IsMongoId()
     city: string;
 }
+
+export type BaseResponse<T> = {
+    token: T
+}

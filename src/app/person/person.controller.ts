@@ -13,7 +13,7 @@ import { CheckIntPipe } from '../../utils/pipetransform';
 import { AuthGuard } from '../../utils/auth.guard';
 // import { LoggingInterceptor } from '../../utils/login.interceptor';
 import { PersonModel } from '../../models/person.model';
-import { AddPersonDTO } from './person.dto';
+import { AddPersonDTO, LoginDTO, BaseResponse } from './person.dto';
 
 @Controller('person')
 @UseGuards(AuthGuard)
@@ -35,6 +35,11 @@ export class PersonController {
     findOne(@Param() params: { id: string }): string {
         console.log(params.id);
         return `This action returns a ${params.id} person`;
+    }
+
+    @Post('login')
+    loginPerson(@Body() body: LoginDTO): Promise<BaseResponse<string>> {
+        return this.personService.loginPerson(body);
     }
 
     /* Throws 400 if number cant be casted from a string */
