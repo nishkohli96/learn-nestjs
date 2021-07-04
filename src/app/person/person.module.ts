@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { PersonController } from './person.controller';
 import { PersonService } from './person.service';
+import { PersonDAL } from './person.dal';
 import { AuthGuard } from '../../utils/auth.guard';
 // import { LoggingInterceptor } from '../../utils/login.interceptor';
 
@@ -13,6 +14,10 @@ import { AuthGuard } from '../../utils/auth.guard';
         {
             provide: APP_GUARD,
             useClass: AuthGuard,
+        },
+        {
+            provide: PersonDAL.name,
+            useClass: PersonDAL,
         },
         // {
         //     provide: APP_INTERCEPTOR,

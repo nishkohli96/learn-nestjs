@@ -1,4 +1,3 @@
-// import { Types } from 'mongoose';
 import { IsEnum, IsMongoId, IsString, MinLength } from 'class-validator';
 import { COUNTRY } from '../../models/city.model';
 // import { IsObjectId } from '../../utils/obj-id.decorator';
@@ -20,5 +19,5 @@ export class GetCityDTO {
     // _id: Types.ObjectId;
 
     @IsMongoId()
-    _id: string;
+    id: string; /* Must match the param inside Get() in the controller file */
 }

@@ -16,7 +16,7 @@ export class CityService {
     }
 
     async getCity(param: GetCityDTO): Promise<CityModel | null> {
-        const res = await this.cityDAL.findOne({ _id: param._id });
+        const res = await this.cityDAL.findOne({ _id: param.id });
         return res;
     }
 

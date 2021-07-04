@@ -38,7 +38,7 @@ export class PersonController {
     }
 
     /* Throws 400 if number cant be casted from a string */
-    @Get('person/:id')
+    @Get('check/:id')
     typeCheck(@Param('id', new CheckIntPipe()) id: number) {
         // or typeCheck(@Param('id', ParseIntPipe) id: number) {
         return `Param Id: ${id}. env var is ${process.env.DUMMY_KEY}.
