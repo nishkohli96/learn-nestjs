@@ -1,32 +1,27 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from 'nestjs-typegoose';
-import { ReturnModelType } from '@typegoose/typegoose';
+import { Injectable , Inject} from '@nestjs/common';
 import { CityModel } from '../../models/city.model';
 import { AddCityDTO, GetCityDTO } from './city.dto';
+import { CityDAL } from './city.dal';
 
 @Injectable()
 export class CityService {
     constructor(
-        @InjectModel(CityModel)
-        private cityModel: ReturnModelType<typeof CityModel>,
-    ) {}
+        @Inject("CityDAL") private cityDAL: CityDAL ,
+    )
+    { }
 
     async getCities(): Promise<CityModel[]> {
-        const res = await this.cityModel.find({});
+        const res = await this.cityDAL.findAll({});
         return res;
     }
 
     async getCity(param: GetCityDTO): Promise<CityModel | null> {
-        console.log(param);
-        const res = await this.cityModel.findOne({ _id: param._id });
-        console.log('res: ', CityModel);
+        const res = await this.cityDAL.findOne({ _id: param._id });
         return res;
     }
 
     async addCity(body: AddCityDTO): Promise<CityModel> {
-        console.log('resp: ', this.cityModel);
-
-        const res = new this.cityModel(body);
+        const res =  this.cityDAL.create(body);
         return res;
     }
 }

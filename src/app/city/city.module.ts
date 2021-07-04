@@ -1,12 +1,16 @@
 import { Module } from '@nestjs/common';
-import {TypegooseModule} from 'nestjs-typegoose';
-import { CityModel } from '../../models/city.model';
 import { CityController } from './city.controller';
 import { CityService } from './city.service';
+import { CityDAL } from './city.dal';
 
 @Module({
-    imports: [TypegooseModule.forFeature([CityModel])],
+    imports: [],
     controllers: [CityController],
-    providers: [CityService],
+    providers: [CityService,
+        {
+            useClass: CityDAL,
+            provide: CityDAL.name
+        },
+    ],
 })
 export class CityModule {}
