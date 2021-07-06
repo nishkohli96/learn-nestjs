@@ -10,11 +10,8 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class LoginInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-        console.log('Before...',context);
+        console.log('Before...', context);
 
-        return next
-            .handle()
-            .pipe(tap(() => console.log(`After... `)));
+        return next.handle().pipe(tap(() => console.log(`After... `)));
     }
 }
-

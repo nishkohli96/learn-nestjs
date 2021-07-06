@@ -6,8 +6,7 @@ import {
 } from '@nestjs/platform-fastify';
 import * as mongoose from 'mongoose';
 import { AppModule } from './app.module';
-import { LoginInterceptor } from './utils/login.interceptor';
-import { AuthMiddleware } from './utils/auth.middleware';
+// import { LoginInterceptor } from './utils/login.interceptor';
 
 async function bootstrap() {
     const app = await NestFactory.create<NestFastifyApplication>(
@@ -33,9 +32,8 @@ async function bootstrap() {
             transform: false,
             forbidNonWhitelisted: true,
         }),
-    )
-        .useGlobalInterceptors(new LoginInterceptor())
-        .use(new AuthMiddleware());
+    );
+    // .useGlobalInterceptors(new LoginInterceptor());
 
     try {
         await mongoose.connect(process.env.MONGO_URL ?? '', {

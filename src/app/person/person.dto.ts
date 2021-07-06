@@ -22,5 +22,5 @@ export class AddPersonDTO extends LoginDTO {
 }
 
 export type BaseResponse<T> = {
-    token: T
-}
+    token: T;
+};

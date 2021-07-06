@@ -1,8 +1,13 @@
-import { Module, NestModule } from '@nestjs/common';
+import {
+    Module,
+    NestModule,
+    RequestMethod,
+    MiddlewareConsumer,
+} from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { PersonModule } from './app/person/person.module';
 import { CityModule } from './app/city/city.module';
-// import { LoggerMiddleware } from './utils/logger.middleware';
+import { AuthMiddleware } from './utils/auth.middleware';
 
 @Module({
     imports: [
@@ -21,7 +26,13 @@ import { CityModule } from './app/city/city.module';
     providers: [],
 })
 export class AppModule implements NestModule {
-    configure() {
+    configure(consumer: MiddlewareConsumer) {
+        consumer
+            .apply(AuthMiddleware)
+            // .exclude({ path: 'person/login', method: RequestMethod.POST })
+            // .exclude({ path: 'person', method: RequestMethod.POST })
+            .forRoutes('city');
+
         // configure(consumer: MiddlewareConsumer) {
         /* Separate multiple middlewares by , */
         // consumer.apply(LoggerMiddleware).forRoutes('cats');

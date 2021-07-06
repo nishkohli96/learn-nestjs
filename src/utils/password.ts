@@ -31,7 +31,7 @@ export async function getJWT(email: string): Promise<string> {
         {
             email: email,
             iat: Math.floor(Date.now() / 1000) - 30,
-            exp: Math.floor(Date.now() / 1000) + (60 * 60), // 1 hr expiry
+            exp: Math.floor(Date.now() / 1000) + 60 * 60, // 1 hr expiry
         },
         process.env.DUMMY_KEY ?? 'key',
     );

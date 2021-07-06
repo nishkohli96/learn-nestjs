@@ -30,11 +30,11 @@ export class PersonService {
             throw new ConflictException('No person with this email found');
         }
         const isPswdMatch = await verifyPswd(body.password, person.password);
-        
+
         if (!isPswdMatch) {
             throw new ConflictException('Wrong Password');
         }
-        
+
         const token = await getJWT(body.email);
         return { token };
     }
