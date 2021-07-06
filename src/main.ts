@@ -4,9 +4,10 @@ import {
     FastifyAdapter,
     NestFastifyApplication,
 } from '@nestjs/platform-fastify';
-import compression from 'fastify-compress';
 import * as mongoose from 'mongoose';
 import { AppModule } from './app.module';
+import { LoginInterceptor } from './utils/login.interceptor';
+import { AuthMiddleware } from './utils/auth.middleware';
 
 async function bootstrap() {
     const app = await NestFactory.create<NestFastifyApplication>(
@@ -26,14 +27,15 @@ async function bootstrap() {
         },
     );
 
-    app.register(compression, { encodings: ['gzip', 'deflate'] });
     app.useGlobalPipes(
         new ValidationPipe({
             whitelist: true,
             transform: false,
             forbidNonWhitelisted: true,
         }),
-    );
+    )
+        .useGlobalInterceptors(new LoginInterceptor())
+        .use(new AuthMiddleware());
 
     try {
         await mongoose.connect(process.env.MONGO_URL ?? '', {
